@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Homepage.css'; // Create this CSS file for homepage-specific styles
+import BlurText from '../components/BlurText.jsx';
 
 const Homepage = () => {
   return (
@@ -8,7 +9,10 @@ const Homepage = () => {
       <header className="hero">
         {/*  */}
         <div className="hero-content">
-          <h1>Welcome to AgroSmart</h1>
+        <BlurText 
+  text="Welcome to AgroSmart" 
+  className="welcome-heading" 
+/>
           <p>Your intelligent farming companion for better crop management and higher yields.</p>
           <Link to="/app" className="btn btn-primary">Go to Dashboard</Link>
         </div>

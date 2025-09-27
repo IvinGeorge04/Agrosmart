@@ -20,7 +20,7 @@
     /* Image credit: Photo by Tom Fisk from Pexels.
        Replace this URL with a high-quality image of a modern farm or a lush green field.
     */
-    background-image: url('https://images.pexels.com/photos/235922/pexels-photo-235922.jpeg');
+    background-image: url('https://media.istockphoto.com/id/1469639791/photo/farmer-using-digital-tablet-in-corn-crop-cultivated-field-with-smart-farming-interface-icons.jpg?s=612x612&w=0&k=20&c=CEnLHATfACNoH_N3Ru5KoTOmAc5SbufJozvV_kcuwc4=');
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* Creates a nice parallax effect */
@@ -151,3 +151,13 @@
         padding: 3rem 1rem;
     }
 }
+
+.welcome-heading {
+    /* --- FIXES THE SIZE --- */
+    font-size: 5rem;   /* Adjust this value to make it bigger or smaller */
+    font-weight: bold;   /* Makes the text bold, like a heading */
+  
+    /* --- FIXES THE ALIGNMENT --- */
+    width: 100%;             /* Ensures the container spans the full width */
+    justify-content: center; /* This centers the words horizontally */
+  }
