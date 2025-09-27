@@ -1,50 +1,101 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAppContext } from '../context/AppContext'; // Import the custom hook
-import './Dashboard.css'; // Import the new CSS file
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
+import { FiCamera, FiHeart, FiAlertTriangle, FiRss, FiWind, FiBook, FiGrid } from 'react-icons/fi';
+import { useAppContext } from '../context/AppContext';
+import './Dashboard.css';
+
+// --- Helper function to get a greeting based on the time of day ---
+const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return "Good morning";
+    if (hour < 18) return "Good afternoon";
+    return "Good evening";
+};
 
 const Dashboard = () => {
-    // Get stats from the global context
     const { stats, newsCount } = useAppContext();
 
+    // --- Data for the chart ---
+    const chartData = [
+        { name: 'Healthy', value: stats.healthyPlants, color: '#27ae60' },
+        { name: 'Issues', value: stats.issuesFound, color: '#e67e22' },
+    ];
+
     return (
-        <div>
-            <div className="page-header">
-                <h2>Welcome to AgroSmart</h2>
-                <p>Your intelligent farming companion for better crop management.</p>
+        <div className="dashboard-container">
+            {/* --- Dynamic Header --- */}
+            <div className="dashboard-header">
+                <h2>{getGreeting()}, welcome to AgroSmart</h2>
+                <p>Here is your farm's summary for today.</p>
             </div>
 
-            {/* Use dynamic values from context */}
-            <div className="summary-grid">
-                <div className="summary-card scans">
-                    <h3>Total Scans</h3>
-                    <p className="summary-value">{stats.totalScans}</p>
+            {/* --- Main content grid --- */}
+            <div className="dashboard-main-grid">
+                <div className="dashboard-left">
+                    {/* --- Icon-driven Stat Cards --- */}
+                    <div className="stats-grid">
+                        <StatCard icon={<FiCamera />} value={stats.totalScans} label="Total Scans" colorClass="blue" />
+                        <StatCard icon={<FiHeart />} value={stats.healthyPlants} label="Healthy Plants" colorClass="green" />
+                        <StatCard icon={<FiAlertTriangle />} value={stats.issuesFound} label="Issues Found" colorClass="orange" />
+                        <StatCard icon={<FiRss />} value={newsCount} label="News Updates" colorClass="purple" />
+                    </div>
+                    
+                    {/* --- Quick Actions Section --- */}
+                    <div className="card">
+                        <h3>Quick Actions</h3>
+                        <div className="quick-actions-grid">
+                            <QuickActionLink to="/app/disease-detection" icon={<FiGrid />} label="Scan Plant" />
+                            <QuickActionLink to="/app/news" icon={<FiRss />} label="Latest News" />
+                            <QuickActionLink to="/app/weather" icon={<FiWind />} label="Weather" />
+                            <QuickActionLink to="/app/resources" icon={<FiBook />} label="Resources" />
+                        </div>
+                    </div>
                 </div>
-                <div className="summary-card healthy">
-                    <h3>Healthy Plants</h3>
-                    <p className="summary-value">{stats.healthyPlants}</p>
-                </div>
-                <div className="summary-card issues">
-                    <h3>Issues Found</h3>
-                    <p className="summary-value">{stats.issuesFound}</p>
-                </div>
-                <div className="summary-card news">
-                    <h3>News Updates</h3>
-                    <p className="summary-value">{newsCount}</p>
-                </div>
-            </div>
-            
-            <div className="card quick-actions-container">
-                <h3>Quick Actions</h3>
-                <div className="quick-actions-grid">
-                    <Link to="/app/disease-detection" className="quick-action-link">Scan Plant</Link>
-                    <Link to="/app/news" className="quick-action-link">Latest News</Link>
-                    <Link to="/app/weather" className="quick-action-link">Weather</Link>
-                    <Link to="/app/resources" className="quick-action-link">Resources</Link>
+
+                <div className="dashboard-right">
+                    {/* --- Data Visualization Card --- */}
+                    <div className="card chart-card">
+                        <h3>Plant Status Overview</h3>
+                        <div className="chart-container">
+                            <ResponsiveContainer width="100%" height="100%">
+                                <BarChart data={chartData} layout="vertical" margin={{ top: 0, right: 10, left: 10, bottom: 0 }}>
+                                    <XAxis type="number" hide />
+                                    <YAxis type="category" dataKey="name" axisLine={false} tickLine={false} width={80} />
+                                    <Tooltip cursor={{ fill: '#f8f9fa' }} />
+                                    <Bar dataKey="value" barSize={30} radius={[0, 8, 8, 0]}>
+                                        {chartData.map((entry, index) => (
+                                            <Cell key={`cell-${index}`} fill={entry.color} />
+                                        ))}
+                                    </Bar>
+                                </BarChart>
+                            </ResponsiveContainer>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     );
 };
+
+// --- Reusable Components for a cleaner Dashboard ---
+const StatCard = ({ icon, value, label, colorClass }) => (
+    <div className="stat-card">
+        <div className={`stat-icon-wrapper ${colorClass}`}>
+            {icon}
+        </div>
+        <div className="stat-info">
+            <p className="stat-value">{value}</p>
+            <p className="stat-label">{label}</p>
+        </div>
+    </div>
+);
+
+const QuickActionLink = ({ to, icon, label }) => (
+    <Link to={to} className="quick-action-link">
+        {icon}
+        <span>{label}</span>
+    </Link>
+);
 
 export default Dashboard;

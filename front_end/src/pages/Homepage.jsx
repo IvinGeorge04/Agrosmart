@@ -9,10 +9,9 @@ const Homepage = () => {
       <header className="hero">
         {/*  */}
         <div className="hero-content">
-        <BlurText 
-  text="Welcome to AgroSmart" 
-  className="welcome-heading" 
-/>
+      
+   <h1>Welcome to AgroSmart</h1> 
+
           <p>Your intelligent farming companion for better crop management and higher yields.</p>
           <Link to="/app" className="btn btn-primary">Go to Dashboard</Link>
         </div>

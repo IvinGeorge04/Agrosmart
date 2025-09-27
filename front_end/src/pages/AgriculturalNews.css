@@ -1,0 +1,114 @@
+/* AgriculturalNews.css */
+
+/* General container and header styles */
+.news-container {
+    padding: 2rem;
+    background-color: #f8f9fa; /* Light grey background for the page */
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.page-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.page-header p {
+    font-size: 1.1rem;
+    color: #6c757d;
+}
+
+/* Responsive grid for news articles */
+.news-grid {
+    display: grid;
+    /* Create responsive columns: minimum 320px, maximum 1fr */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem; /* Spacing between cards */
+}
+
+/* Individual card styling */
+.news-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden; /* Ensures the image corners are rounded */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-card:hover {
+    transform: translateY(-8px); /* Lifts the card on hover */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Card image styling */
+.card-image {
+    width: 100%;
+    height: 200px; /* Fixed height for all images */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+
+/* Card content styling */
+.card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allows content to fill the card height */
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #212529;
+    margin: 0 0 0.75rem 0;
+}
+
+.card-description {
+    font-size: 0.95rem;
+    color: #495057;
+    line-height: 1.6;
+    flex-grow: 1; /* Pushes the 'Read More' link to the bottom */
+    margin-bottom: 1rem;
+}
+
+.read-more-link {
+    display: inline-block;
+    font-weight: 600;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.2s;
+    align-self: flex-start; /* Aligns the link to the left */
+}
+
+.read-more-link:hover {
+    color: #0056b3;
+}
+
+
+/* Loading Spinner and Error Message */
+.loading-spinner {
+    margin: 50px auto;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.error-message {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+    color: #dc3545; /* A standard error red color */
+}
