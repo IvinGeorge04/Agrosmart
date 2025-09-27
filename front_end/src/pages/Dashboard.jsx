@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
-import { FiCamera, FiHeart, FiAlertTriangle, FiRss, FiWind, FiBook, FiGrid } from 'react-icons/fi';
+import { FiCamera, FiHeart, FiAlertTriangle, FiRss } from 'react-icons/fi';
 import { useAppContext } from '../context/AppContext';
 import './Dashboard.css';
 
@@ -30,47 +29,32 @@ const Dashboard = () => {
                 <p>Here is your farm's summary for today.</p>
             </div>
 
-            {/* --- Main content grid --- */}
+            {/* --- Main content grid (UPDATED STRUCTURE) --- */}
             <div className="dashboard-main-grid">
-                <div className="dashboard-left">
-                    {/* --- Icon-driven Stat Cards --- */}
-                    <div className="stats-grid">
-                        <StatCard icon={<FiCamera />} value={stats.totalScans} label="Total Scans" colorClass="blue" />
-                        <StatCard icon={<FiHeart />} value={stats.healthyPlants} label="Healthy Plants" colorClass="green" />
-                        <StatCard icon={<FiAlertTriangle />} value={stats.issuesFound} label="Issues Found" colorClass="orange" />
-                        <StatCard icon={<FiRss />} value={newsCount} label="News Updates" colorClass="purple" />
-                    </div>
-                    
-                    {/* --- Quick Actions Section --- */}
-                    <div className="card">
-                        <h3>Quick Actions</h3>
-                        <div className="quick-actions-grid">
-                            <QuickActionLink to="/app/disease-detection" icon={<FiGrid />} label="Scan Plant" />
-                            <QuickActionLink to="/app/news" icon={<FiRss />} label="Latest News" />
-                            <QuickActionLink to="/app/weather" icon={<FiWind />} label="Weather" />
-                            <QuickActionLink to="/app/resources" icon={<FiBook />} label="Resources" />
-                        </div>
-                    </div>
+                {/* --- Icon-driven Stat Cards --- */}
+                <div className="stats-grid">
+                    <StatCard icon={<FiCamera />} value={stats.totalScans} label="Total Scans" colorClass="blue" />
+                    <StatCard icon={<FiHeart />} value={stats.healthyPlants} label="Healthy Plants" colorClass="green" />
+                    <StatCard icon={<FiAlertTriangle />} value={stats.issuesFound} label="Issues Found" colorClass="orange" />
+                    <StatCard icon={<FiRss />} value={newsCount} label="News Updates" colorClass="purple" />
                 </div>
-
-                <div className="dashboard-right">
-                    {/* --- Data Visualization Card --- */}
-                    <div className="card chart-card">
-                        <h3>Plant Status Overview</h3>
-                        <div className="chart-container">
-                            <ResponsiveContainer width="100%" height="100%">
-                                <BarChart data={chartData} layout="vertical" margin={{ top: 0, right: 10, left: 10, bottom: 0 }}>
-                                    <XAxis type="number" hide />
-                                    <YAxis type="category" dataKey="name" axisLine={false} tickLine={false} width={80} />
-                                    <Tooltip cursor={{ fill: '#f8f9fa' }} />
-                                    <Bar dataKey="value" barSize={30} radius={[0, 8, 8, 0]}>
-                                        {chartData.map((entry, index) => (
-                                            <Cell key={`cell-${index}`} fill={entry.color} />
-                                        ))}
-                                    </Bar>
-                                </BarChart>
-                            </ResponsiveContainer>
-                        </div>
+                
+                {/* --- Data Visualization Card (MOVED HERE) --- */}
+                <div className="card chart-card">
+                    <h3>Plant Status Overview</h3>
+                    <div className="chart-container">
+                        <ResponsiveContainer width="100%" height="100%">
+                            <BarChart data={chartData} layout="vertical" margin={{ top: 0, right: 10, left: 10, bottom: 0 }}>
+                                <XAxis type="number" hide />
+                                <YAxis type="category" dataKey="name" axisLine={false} tickLine={false} width={80} />
+                                <Tooltip cursor={{ fill: '#f8f9fa' }} />
+                                <Bar dataKey="value" barSize={30} radius={[0, 8, 8, 0]}>
+                                    {chartData.map((entry, index) => (
+                                        <Cell key={`cell-${index}`} fill={entry.color} />
+                                    ))}
+                                </Bar>
+                            </BarChart>
+                        </ResponsiveContainer>
                     </div>
                 </div>
             </div>
@@ -91,11 +75,6 @@ const StatCard = ({ icon, value, label, colorClass }) => (
     </div>
 );
 
-const QuickActionLink = ({ to, icon, label }) => (
-    <Link to={to} className="quick-action-link">
-        {icon}
-        <span>{label}</span>
-    </Link>
-);
+// NOTE: QuickActionLink component has been removed as it's no longer used.
 
 export default Dashboard;

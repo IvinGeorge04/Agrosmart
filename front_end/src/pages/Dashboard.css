@@ -15,33 +15,26 @@
     margin: 0;
 }
 
+/* --- UPDATED: Changed to a single-column layout --- */
 .dashboard-main-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr; /* Now a single column */
     gap: 2rem;
 }
-
-/* Fallback for smaller screens */
-@media (max-width: 992px) {
-    .dashboard-main-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
 
 /* --- Re-styled Stat Cards (Minimal & Icon-Focused) --- */
 .stats-grid {
     display: grid;
     gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    margin-bottom: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Increased min-width */
 }
 
+/* --- UPDATED: Increased padding to make cards larger --- */
 .stat-card {
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    padding: 1.5rem;
+    padding: 2rem; /* Increased padding */
     background-color: #ffffff;
     border-radius: 12px;
     border: 1px solid var(--border-color);
@@ -53,9 +46,10 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
 }
 
+/* --- UPDATED: Increased icon size --- */
 .stat-icon-wrapper {
-    font-size: 1.75rem;
-    padding: 0.8rem;
+    font-size: 2rem; /* Increased size */
+    padding: 1rem;   /* Increased padding */
     border-radius: 50%;
     color: #fff;
     display: flex;
@@ -69,9 +63,9 @@
 .stat-icon-wrapper.orange { background-color: #f39c12; }
 .stat-icon-wrapper.purple { background-color: #9b59b6; }
 
-
+/* --- UPDATED: Increased value font size --- */
 .stat-info .stat-value {
-    font-size: 2rem;
+    font-size: 2.5rem; /* Increased size */
     font-weight: 700;
     margin: 0;
     line-height: 1;
@@ -82,38 +76,7 @@
     color: #6c757d;
 }
 
-/* --- Re-styled Quick Actions --- */
-.quick-actions-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-}
-
-.quick-action-link {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    padding: 1.5rem;
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    text-decoration: none;
-    color: var(--dark-green);
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.quick-action-link svg {
-    font-size: 1.75rem;
-}
-
-.quick-action-link:hover {
-    background-color: var(--primary-green);
-    color: white;
-    transform: translateY(-4px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
+/* --- REMOVED: All styles for .quick-actions-grid and .quick-action-link are gone --- */
 
 /* --- Chart Card --- */
 .chart-card {
