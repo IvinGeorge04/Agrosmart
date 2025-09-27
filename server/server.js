@@ -15,6 +15,28 @@ const upload = multer({ storage: multer.memoryStorage() });
 // === API Routes ===
 
 // 1. Plant Disease Detection (Kindwise API)
+// app.post('/api/detect-disease', upload.single('image'), async (req, res) => {
+//     if (!req.file) {
+//         return res.status(400).json({ error: 'No image file provided.' });
+//     }
+//     try {
+//         const imageBase64 = req.file.buffer.toString('base64');
+//         const response = await axios.post('https://api.plant.id/v2/health_assessment', {
+//             images: [imageBase64],
+//             // You can add modifiers for more specific results
+//             // disease_details: ["description", "treatment"],
+//         }, {
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'Api-Key': process.env.KINDWISE_API_KEY,
+//             },
+//         });
+//         res.json(response.data);
+//     } catch (error) {
+//         console.error('Error in disease detection:', error.response ? error.response.data : error.message);
+//         res.status(500).json({ error: 'Failed to detect disease.' });
+//     }
+// });
 app.post('/api/detect-disease', upload.single('image'), async (req, res) => {
     if (!req.file) {
         return res.status(400).json({ error: 'No image file provided.' });
@@ -23,8 +45,8 @@ app.post('/api/detect-disease', upload.single('image'), async (req, res) => {
         const imageBase64 = req.file.buffer.toString('base64');
         const response = await axios.post('https://api.plant.id/v2/health_assessment', {
             images: [imageBase64],
-            // You can add modifiers for more specific results
-            // disease_details: ["description", "treatment"],
+            // THIS IS THE KEY CHANGE: Request treatment details
+            disease_details: ["description", "treatment", "url"],
         }, {
             headers: {
                 'Content-Type': 'application/json',

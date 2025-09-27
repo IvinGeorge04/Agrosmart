@@ -7,11 +7,11 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
     // State to hold our dashboard stats
     const [stats, setStats] = useState({
-        totalScans: 1, // Start with initial values from your screenshot
+        totalScans: 0, // Start with initial values from your screenshot
         healthyPlants: 0,
-        issuesFound: 1,
+        issuesFound: 0,
     });
-    const [newsCount, setNewsCount] = useState(3);
+    const [newsCount, setNewsCount] = useState(10);
 
     // Function to update stats after a scan
     const updateScanStats = ({ isHealthy }) => {
