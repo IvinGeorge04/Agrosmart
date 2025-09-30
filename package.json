@@ -1,0 +1,27 @@
+{
+  "name": "agrosmart",
+  "version": "1.0.0",
+  "description": "AGRO SMART\r Tech Stack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IvinGeorge04/Agrosmart.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IvinGeorge04/Agrosmart/issues"
+  },
+  "homepage": "https://github.com/IvinGeorge04/Agrosmart#readme",
+  "dependencies": {
+    "axios": "^1.12.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "multer": "^2.0.2"
+  }
+}
