@@ -11,7 +11,7 @@ const AgriculturalNews = () => {
     useEffect(() => {
         const fetchNews = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/api/news');
+                const response = await axios.get('https://agrosmart-7o36.onrender.com/api/news');
                 // Filter out articles that don't have a title or link
                 const validArticles = response.data.results.filter(
                     article => article.title && article.link
