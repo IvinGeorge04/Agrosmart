@@ -18,7 +18,7 @@ const Weather = () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await axios.get(`http://localhost:3001/api/weather?city=${searchCity}`);
+            const response = await axios.get(`https://agrosmart-7o36.onrender.com/api/weather?city=${searchCity}`);
             setWeather(response.data);
         } catch (err) {
             setError(`Could not fetch weather for "${searchCity}". Please check the city name.`);
