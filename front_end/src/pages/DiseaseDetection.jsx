@@ -51,7 +51,7 @@ const DiseaseDetection = () => {
         formData.append('image', file);
 
         try {
-            const response = await axios.post('http://localhost:3001/api/detect-disease', formData, {
+            const response = await axios.post('https://agrosmart-7o36.onrender.com/api/detect-disease', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
             setResult(response.data);
