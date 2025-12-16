@@ -12,7 +12,7 @@ const LocustWatchPage = () => {
             setError(null);
             try {
                 // This fetches data from your backend API
-                const response = await axios.get('http://localhost:3001/api/locust-watch');
+                const response = await axios.get('https://agrosmart-7o36.onrender.com/api/locust-watch');
                 setLocustInfo(response.data);
             } catch (err) {
                 console.error("Failed to fetch locust info:", err);
